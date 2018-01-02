@@ -1,0 +1,30 @@
+<!DOCTYPE html> 
+<html lang="en-US"> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+<body ng-app="lsciApp"> 
+
+<div ng-controller="lsciCtrl"> 
+ <!-- <p>Name : <input type="text" ng-model="name"></p> -->  
+  <h1>I really, really wanna drive a {{car}}</h1> 
+  <button ng-click="refresh();">Refresh</button> 
+</div> 
+
+</body>
+
+<script>
+var app = angular.module("lsciApp", []);
+app.controller("lsciCtrl", ["$scope", "$http", function($scope, $http) {
+
+    $scope.refresh = function () { 
+
+        $http.get("http://marketing.lemaysolutions.com:5000/getcar")
+        .then(function(response) {
+             $scope.car = response.data;
+
+        });
+    }
+
+
+}]);
+</script>
+</html>

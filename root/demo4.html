@@ -1,0 +1,96 @@
+<!DOCTYPE html> 
+<html lang="en-US"> 
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script> 
+<body ng-app="lsciApp"> 
+
+<div ng-controller="lsciCtrl"> 
+ <!-- <p>Name : <input type="text" ng-model="name"></p> -->  
+    <h1> Predict my price!</h1>
+    
+    <label>Country:</label>
+    <select ng-model="country">
+    <option ng-repeat="x in countries">{{x}}</option>
+    </select>
+    <br><br>
+    
+    <label>Driven wheels:</label>
+    <select ng-model="drive">
+    <option ng-repeat="x in driven_wheels" >{{x}}</option>
+    </select>
+    <br><br>
+ 
+    <label>Market:</label>
+    <select ng-model="market">
+    <option ng-repeat="x in markets">{{x}}</option>
+    </select>
+    <br><br>
+
+
+    <label>Year:</label>
+    <input type="text" ng-model="year">
+    <br><br>
+
+    
+
+    <label>Horsepower:</label>
+    <input type="text" ng-model="hp">
+    <br><br>
+    
+     
+    <label>Style:</label>
+    <select ng-model="style">
+    <option ng-repeat="x in styles">{{x}}</option>
+    </select>
+    <br><br>
+    
+    
+    <button ng-click="submit();">Submit</button> 
+    <br><br>
+    <h2>Price: {{price}}</h2>
+</div> 
+
+</body>
+
+<script>
+var app = angular.module("lsciApp", []);
+
+
+
+
+
+
+
+app.controller("lsciCtrl", ["$scope", "$http", function($scope, $http) {
+    
+    $scope.countries = ['England', 'Germany', 'Great Britain', 'Italy', 'Japan', 'S. Korea','Sweden','USA'];
+    $scope.country = '';
+    $scope.driven_wheels = ['all wheel drive', 'four wheel drive', 'front wheel drive', 'rear wheel drive'];    
+    $scope.drive = '';
+    
+    $scope.markets =['luxury', 'luxury sport', 'mainstream', 'midrange'];
+    $scope.market = "";
+    $scope.year = 2015;
+    $scope.hp = 300;
+    $scope.cylinders = 8;
+    $scope.doors = 2;
+    $scope.styles = ["Compact", "Large", "Midsize", "2dr Hatchback", "2dr SUV", "4dr Hatchback", "4dr SUV", "Cargo Minivan", "Cargo Van", "Convertible", "Convertible SUV", "Coupe", "Crew Cab Pickup", "Extended Cab Pickup", "Passenger Minivan", "Passenger Van", "Regular Cab Pickup", "Sedan", "Wagon"];
+    $scope.style = "";
+    $scope.price = "unknown";
+
+                           
+// Popularity                           
+
+    $scope.submit = function () { 
+        $scope.price = "We didn't actually check it... :(";
+        <!-- $http.get("http://165.227.40.104:5000/predictprice") -->
+        <!-- .then(function(response) { -->
+             <!-- $scope.price = response.data; -->
+
+        <!-- }); -->
+        console.log($scope);
+    }
+
+
+}]);
+</script>
+</html>
